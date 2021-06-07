@@ -4,8 +4,8 @@ Musical genre stability over time and across song features based on Spotify data
 # test
 Verifying push-pull via git is working
 
-## EDA
-# Genres
+# EDA
+### Genres
 
 Genre data is associated with artists, but not tracks.
 Among the 1,104,349 artists, only about 1/4th (298,616) have any genres associated with them.
