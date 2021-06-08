@@ -10,7 +10,7 @@ This analysis is heavily reliant on Spotify's "popularity" metric for artists, w
 
 Artists are, on average, highly unpopular -- 21% of all artists are at 0 popularity!
 
-![Popularity exploration](./img/popularity_metric_hist_scat.png')
+![Popularity exploration](./img/popularity_metric_hist_scat.png)
 
 Genre data is associated with artists (but not tracks -- we'll deal with that later). Among the 1,104,349 artists, only 27% (298,616) have any genres associated with them.
 
@@ -50,19 +50,3 @@ For example, by entering "Magic City Hippies" into the script, the following inf
 Their 'miami indie' music is the most in-demand"
 
 ![Artist recommendation](./img/artist_recommender.png)
-
-
-
-
-
-
-
-
-
-# Search for your favorite genre, returns current demand and projected demand
-    * Current demand is interpretted as, is it a good idea to sign someone now?
-    * projected demand increasing suggests signing NOW, decreasing suggests avoiding
-
-# Search for an artist, find out what their most popular genre is, and what genres they might want to play more of in the future to gain popularity
-
-# Highest popularity with the lowest follower count would indicate a rising artist
