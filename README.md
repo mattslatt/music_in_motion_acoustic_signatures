@@ -26,8 +26,8 @@ The average popularity of a genre is strongly related to the number of artists t
 
 Interestingly, the most rare genres have relatively high popularity -- their uniqueness probalby helps them to stand out -- but still pale in comparison to the dominant genres.
 
-![Top10]()./img/top_10_genres_count_and_pop_bar.png)
-![Bottom10]()./img/bottom_10_genres_count_and_pop_bar.png)
+![Top10](./img/top_10_genres_count_and_pop_bar.png)
+![Bottom10](./img/bottom_10_genres_count_and_pop_bar.png)
 
 Does genre count track with popularity? For record companies looking to sign an aspiring artist, is there an appetite on Spotify for their genre? Or is the competition stiff?
 
