@@ -1,11 +1,10 @@
-# spotify
+# Spotify Genre Analysis
 Spotify is the leading music streaming service in the world. Using [this dataset](https://www.kaggle.com/yamaerenay/spotify-dataset-19212020-160k-tracks), 1.1 million rows of artist data (including their name, number of followers, genre tags, and popoularity) along with 586,000 rows of track data (including 11 numerical features describing the acoustic signature, along with categorical data such as the affiliated artists and release date). The data was collected in April 2021, but track release dates span to 1922.
 
 The primary goal is to orient this data around musical genre, and determine how genres change over time. First, we'll evaluate the current state of Spotify genres (from April 2021 when the data was collected). Then, by linking track release dates to artist genre tags, we can examine how genres have changed over time -- both in terms of their relative popularity and their acoustic signatures. 
 
 # EDA
 ### Modern genre popularity
-
 This analysis is heavily reliant on Spotify's "popularity" metric for artists, which is primarily based on the total number of plays and how recent they are -- so there is a temporal bias for plays in April 2021. Popularity ranges from 0 to 100, and scales logarithmically with artist follower counts.
 
 Artists are, on average, highly unpopular -- 21% of all artists are at 0 popularity!
