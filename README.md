@@ -6,38 +6,58 @@ The primary goal is to orient this data around musical genre, and determine how 
 # EDA
 ### Modern genre popularity
 
-This analysis is heavily reliant on Spotify's "popularity" feature for artists, which 
+This analysis is heavily reliant on Spotify's "popularity" metric for artists, which is primarily based on the total number of plays and how recent they are -- so there is a temporal bias for plays in April 2021. Popularity ranges from 0 to 100, and scales logarithmically with artist follower counts.
 
-"The popularity of the artist. The value will be between 0 and 100, with 100 being the most popular. The artist’s popularity is calculated from the popularity of all the artist’s tracks."
+Artists are, on average, highly unpopular -- 21% of all artists are at 0 popularity!
 
-. Popularity ranges from 0 to 100. Artists are, on average, highly unpopular -- 21% of all artists are at 0! The music world is brutal. Popularity is strongly correlated with followers, but includes a temporal component that accounts for current play counts in addition to follower counts.
+![Popularity exploration](./img/popularity_metric_hist_scat.png')
 
-![Histograms](./img/popularity_metric_hist_scat.png)
+Genre data is associated with artists (but not tracks -- we'll deal with that later). Among the 1,104,349 artists, only 27% (298,616) have any genres associated with them.
 
-Genre data is associated with artists (but not tracks -- we'll deal with that later). Among the 1,104,349 artists, only about a quarter (298,616) have any genres associated with them.
-
-After removing the empty genre tags, there are 48,787 genre combinations based on 5,365 unique tags. Some of the rarest genres include 'whale song', 'myanmar hip hop', 'albanian iso polyphony' and 'mindfulness'.
+After removing the empty genre tags, there are 5,365 unique genres that constitute 48,787 genre combinations. Some of the rarest genres include 'whale song', 'iowa hip hop', and 'albanian iso polyphony'.
 
 Half of all genres are observed 61 or fewer times, while the most common genres have nearly 600 tagged artists.
 
-![GenreCountHistograms](./img/genre_count_histogram.png)
+![Tagged artist distribution](./img/genre_count_histogram.png)
 
-The average popularity of a genre is strongly related to the number of artists tagged. Some genres, such as 'classical performance' are unpopular in the context of their artist abundance.
+The average popularity of a genre is strongly related to the number of artists tagged. Some top genres, such as 'classical performance' are unpopular in the context of their artist abundance.
 
-Interestingly, the most rare genres have relatively high popularity -- their uniqueness probalby helps them to stand out -- but still pale in comparison to the dominant genres.
+Interestingly, the most rare genres have relatively high popularity -- their uniqueness probalby helps them to stand out -- but still pale in comparison to the popularity of the dominant genres.
 
-![Top10](./img/top_10_genres_count_and_pop_bar.png)
-![Bottom10](./img/bottom_10_genres_count_and_pop_bar.png)
+![Top 10 genres](./img/top_10_genres_count_and_pop_bar.png)
+![Bottom 10 genres](./img/bottom_10_genres_count_and_pop_bar.png)
 
-Does genre count track with popularity? For record companies looking to sign an aspiring artist, is there an appetite on Spotify for their genre? Or is the competition stiff?
+How can this relationship between genre and popularity be useful? Imagine a record label is interested in signing an up-and-coming artist, but isn't sure how their content fits in with the current interests of the Spotify community.
 
-![Genre Count, Popularity](./img/genre_count_popularity_scatter.png)
+Here I calculated a 'demand' metric, calcluated by dividing average popularity by the number of tagged artists for that genre. A genre garnering lots of popularity, yet lacking in artists producing that content, would recieve a high 'demand' score.
 
-To evaluate this, we can calculate a "demand" metric, based on the popularity of a genre divided by the number of artists already associated with that genre. A high demand would indicate relatively low competition given the current appetite for a particular genre.
+There is a heavy skew in the demand distribution, given that uncommon genres seem to attract disproportional popularity. If we assume a record label isn't interested in taking a chance on a relatively unknown genre, the distribution and data below excludes the bottom 50% of genres (61 or fewer artists tagged) along with genres that have a popularity of 0 (for which demand cannot be calculated).
 
-For example, the lowest demand score in the dataset is for 'neo-proto' (also known as neo-progressive rock). This genre has 145 associated artists, yet it's average popularity is only 0.39. Don't sign any neo-proto artists expecting Spotify dividends.
+![Genre demand distribution](./img/genre_demand_hist.png)
 
-On the other hand, 'singer-songwriter' is a 
+At the bottem end of the distrubtion, genres such as 'neo-proto' and 'vintage western' are extremely low demand (~0.003)-- there are more than enough artists on Spotify fulfilling the needs of listeners for that music. On the other hand, 'viral rap', 'melodic rap', and 'girl group' are in high demand(0.90, 0.78, 0.77 respectively), given their popularity relative to the low number of artists producing such content. 
+
+
+### Using in-demand genres to recommend other artists
+
+The artist_recommender.py script takes the name of an artist, and returns their tagged genres, the demand of each of those genres, and 5 relatively unknown artists that play the highest demand genre.
+
+Those 5 relatively unknown artist are selected based on a 'rising' metric, calculated by their popularity divided by their followers. This helps to bias artists for recent plays, especially if not many people follow them yet. A default minimum number of followers is set to 10,000 so that recommended artists aren't completely underground.
+
+For example, by entering "Magic City Hippies" into the script, the following information is returned:
+
+"Magic City Hippies is in the top 0% of rising artists
+Their 'miami indie' music is the most in-demand"
+
+![Artist recommendation](./img/artist_recommender.png)
+
+
+
+
+
+
+
+
 
 # Search for your favorite genre, returns current demand and projected demand
     * Current demand is interpretted as, is it a good idea to sign someone now?
