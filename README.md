@@ -1,7 +1,7 @@
 # Spotify Genre Analysis
-Spotify is the leading music streaming service in the world. Using [this dataset](https://www.kaggle.com/yamaerenay/spotify-dataset-19212020-160k-tracks), 1.1 million rows of artist data (including their name, number of followers, genre tags, and popoularity) along with 586,000 rows of track data (including 11 numerical features describing the acoustic signature, along with categorical data such as the affiliated artists and release date). The data was collected in April 2021, but track release dates span to 1922.
+Spotify is the leading music streaming service in the world. Using [this dataset](https://www.kaggle.com/yamaerenay/spotify-dataset-19212020-160k-tracks), 1.1 million rows of artist data (including artist name, number of followers, genre tags, and popularity) along with 586,000 rows of song data (including 11 numerical features describing the acoustic signature, along with categorical data such as the affiliated artists and release date). The data was collected in April 2021, but track release dates span to 1922.
 
-The primary goal is to orient this data around musical genre, and determine how genres change over time. First, we'll evaluate the current state of Spotify genres (from April 2021 when the data was collected). Then, by linking track release dates to artist genre tags, we can examine how genres have changed over time -- both in terms of their relative popularity and their acoustic signatures. 
+The primary goal is to orient this data around musical genres, and determine how genres change over time. First, we'll evaluate the current state of Spotify genres (from April 2021 when the data was collected). Then, by linking track release dates to artist genre tags, we can examine how genres have changed over time -- both in terms of their relative popularity and their acoustic signatures. 
 
 # EDA
 ### Modern genre popularity
@@ -34,10 +34,10 @@ There is a heavy skew in the demand distribution, given that uncommon genres see
 
 ![Genre demand distribution](./img/genre_demand_hist.png)
 
-At the bottem end of the distrubtion, genres such as 'neo-proto' and 'vintage western' are extremely low demand (~0.003)-- there are more than enough artists on Spotify fulfilling the needs of listeners for that music. On the other hand, 'viral rap', 'melodic rap', and 'girl group' are in high demand(0.90, 0.78, 0.77 respectively), given their popularity relative to the low number of artists producing such content. 
+At the bottem end of the distrubtion, genres such as 'neo-proto' and 'vintage western' are extremely low demand (~0.003), suggesting listeners have plenty of artist options for those genres. On the other hand, 'viral rap', 'melodic rap', and 'girl group' are in high demand (0.90, 0.78, 0.77 respectively), given their popularity relative to the low number of artists producing such content.
 
 
-### Using in-demand genres to recommend other artists
+### Using high demand genres to recommend other artists
 
 The artist_recommender.py script takes the name of an artist, and returns their tagged genres, the demand of each of those genres, and 5 relatively unknown artists that play the highest demand genre.
 
@@ -49,3 +49,7 @@ For example, by entering "Magic City Hippies" into the script, the following inf
 Their 'miami indie' music is the most in-demand"
 
 ![Artist recommendation](./img/artist_recommender.png)
+
+# Genres over time
+### Linking song release dates to artist genres
+
