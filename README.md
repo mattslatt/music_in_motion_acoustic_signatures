@@ -1,5 +1,5 @@
 # Spotify Genre Analysis
-Spotify is the leading music streaming service in the world. Using [this dataset](https://www.kaggle.com/yamaerenay/spotify-dataset-19212020-160k-tracks), 1.1 million rows of artist data (including artist name, number of followers, genre tags, and popularity) along with 586,000 rows of song data (including 11 numerical features describing the acoustic signature, along with categorical data such as the affiliated artists and release date). The data was collected in April 2021, but track release dates span to 1922.
+Spotify is the leading music streaming service in the world, home to more than 70 million tracks, and at least 1.2 million artists. [This dataset](https://www.kaggle.com/yamaerenay/spotify-dataset-19212020-160k-tracks) collected data from the Spotify API, resulting in 1.1 million artists rows (including artist name, number of followers, genre tags, and popularity columns) along with 586k tracks (including 11 numerical features describing the acoustic signature, along with categorical data such as the affiliated artists and release date). The data was collected in April 2021, but track release dates span to 1922.
 
 The primary goal is to orient this data around musical genres, and determine how genres change over time. First, we'll evaluate the current state of Spotify genres (from April 2021 when the data was collected). Then, by linking track release dates to artist genre tags, we can examine how genres have changed over time -- both in terms of their relative popularity and their acoustic signatures. 
 
@@ -46,6 +46,7 @@ Those 5 relatively unknown artist are selected based on a 'rising' metric, calcu
 For example, by entering "Magic City Hippies" into the script, the following information is returned:
 
 "Magic City Hippies is in the top 0% of rising artists
+
 Their 'miami indie' music is the most in-demand"
 
 ![Artist recommendation](./img/artist_recommender.png)
@@ -53,3 +54,16 @@ Their 'miami indie' music is the most in-demand"
 # Genres over time
 ### Linking song release dates to artist genres
 
+Genres are not provided with track data, only artist data. I merged the 586k tracks and with the artist dataframe, resulting in 2,222,219 rows (on average, there are about 4 genres associated with each track). Not all genres will perfectly match the track, but they should be close unless the artist was really branching out from their typical music.
+
+![Top 7 genre abundance across time](./img/top_10_genre_time_scatter.png)
+
+Interesting to see that 'classical performance' and 'rock' peaked substantially earlier than the other genres, which still seem to be on the climb.
+
+Next is to sort out changes within genres over time, with respect to their track features: danceability, energy, speechiness, and valence seem the most interesting algorithmically designated metrics to me.
+
+Tempo, time signature, mode (major 1/minor 0)and key would also be interesting metrics simply because they're objective rather than algorithmic.
+
+# Rock
+
+![Rock features](./img/rock_features_scatter.png)
