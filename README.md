@@ -5,7 +5,7 @@ The primary goal is to orient this data around musical genres, and determine how
 
 # EDA
 ### Modern genre popularity
-This analysis is heavily reliant on Spotify's "popularity" metric for artists, which is primarily based on the total number of plays and how recent they are -- so there is a temporal bias for plays in April 2021. Popularity ranges from 0 to 100, and scales logarithmically with artist follower counts.
+This analysis is reliant on Spotify's "popularity" metric for artists, which is primarily based on the total number of plays and how recent they are -- so there is a temporal bias for plays in April 2021. Popularity ranges from 0 to 100, and scales logarithmically with artist follower counts (total number of plays is not available through the Spotify API).
 
 Artists are, on average, highly unpopular -- 21% of all artists are at 0 popularity!
 
@@ -67,3 +67,19 @@ Tempo, time signature, mode (major 1/minor 0)and key would also be interesting m
 # Rock
 
 ![Rock features](./img/rock_features_scatter.png)
+
+# Other questions
+are we creating new genres faster and faster?
+
+Are some genres dying? I.e. they are growing or shrinking in the last 20 years?
+
+# Hypothesis
+1) Track features change over time for each genre
+Null
+There is no difference in track features within a genre between pre-2000 and post-2000 releases
+
+2) Track features are distinct between genres, regardless of pre-2000 post-2000 timeframe
+
+3) Newer genres (based on earliest release date) grow
+
+4) Does genre popularity/frequency correlate with 
