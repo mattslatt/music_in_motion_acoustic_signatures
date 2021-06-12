@@ -43,43 +43,53 @@ The artist_recommender.py script takes the name of an artist, and returns their 
 
 Those 5 relatively unknown artist are selected based on a 'rising' metric, calculated by their popularity divided by their followers. This helps to bias artists for recent plays, especially if not many people follow them yet. A default minimum number of followers is set to 10,000 so that recommended artists aren't completely underground.
 
-For example, by entering "Magic City Hippies" into the script, the following information is returned:
+For example, by entering "Crooked Colours" into the script, the following information is returned:
 
-"Magic City Hippies is in the top 0% of rising artists
+"Crooked Colours is in the top 0% of rising artists
 
-Their 'miami indie' music is the most in-demand"
+Their 'indie soul' music is the most in-demand"
 
 ![Artist recommendation](./img/artist_recommender.png)
 
 # Genres over time
 ### Linking song release dates to artist genres
 
-Genres are not provided with track data, only artist data. I merged the 586k tracks and with the artist dataframe, resulting in 2,222,219 rows (on average, there are about 4 genres associated with each track). Not all genres will perfectly match the track, but they should be close unless the artist was really branching out from their typical music.
+Genres are not provided with track data, only artist data. I merged the 586k tracks and with the artist dataframe, resulting in 2,222,219 rows (on average, there are about 4 genres associated with each track).
 
 ![Top 7 genre abundance across time](./img/top_10_genre_time_scatter.png)
 
 Interesting to see that 'classical performance' and 'rock' peaked substantially earlier than the other genres, which still seem to be on the climb.
 
-Next is to sort out changes within genres over time, with respect to their track features: danceability, energy, speechiness, and valence seem the most interesting algorithmically designated metrics to me.
+How do specific track features, such as danceability and acousticness, change within a genre as time goes on?
 
-Tempo, time signature, mode (major 1/minor 0)and key would also be interesting metrics simply because they're objective rather than algorithmic.
+# Genre analysis - Rock example
 
-# Rock
+With more than 5,000 unique genres, let's focus on one example. These graphs and statitics can be easily replicated with functions found in the Jupyter notebook, including 
 
-![Rock features](./img/rock_features_scatter.png)
+![Rock features](.img/rock_features_scatter.png)
 
-# Other questions
-are we creating new genres faster and faster?
+Rock as a genre has a rich history that includes a formative period in the late 60s to early 80s. You can see a clear upward trend for 'energy' and a downward trends for 'acousticness'. Because this data is a time series, we must transform the data to a rate of change in order to make our samples i.i.d. and therefore valid with a t-test.
 
-Are some genres dying? I.e. they are growing or shrinking in the last 20 years?
+![Select features over time](./img/classic_rock_change.png)
 
-# Hypothesis
-1) Track features change over time for each genre
-Null
-There is no difference in track features within a genre between pre-2000 and post-2000 releases
+The "genre_features_test('rock', 1967, 1982)" function will calculate the p-values for each of the track features for a given timeframe. Below is the output 'rock' from 1967 to 1982:
 
-2) Track features are distinct between genres, regardless of pre-2000 post-2000 timeframe
+"Is the mean of the annual rate of change different from 0?
+danceability:  
+p-value = 0.71
+energy:  
+p-value = 0.006
+speechiness:  
+p-value = 0.81
+acousticness:  
+p-value = 0.031
+instrumentalness:  
+p-value = 0.958
+liveness:  
+p-value = 0.629
+valence:  
+p-value = 0.723"
 
-3) Newer genres (based on earliest release date) grow
+We can see that in this case, there are two significant categories -- the energy and acousticness are changing substantially on a year-by-year basis for the given period.
 
-4) Does genre popularity/frequency correlate with 
+However, when we run these same calculations over the whole time period, we see no significant values:
