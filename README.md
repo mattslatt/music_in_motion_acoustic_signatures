@@ -66,7 +66,7 @@ How do specific track features, such as danceability and acousticness, change wi
 
 With more than 5,000 unique genres, let's focus on one example. These graphs and statitics can be easily replicated with functions found in the Jupyter notebook, including 
 
-![Rock features](.img/rock_features_scatter.png)
+![Rock features](./img/rock_features_scatter.png)
 
 Rock as a genre has a rich history that includes a formative period in the late 60s to early 80s. You can see a clear upward trend for 'energy' and a downward trends for 'acousticness'. Because this data is a time series, we must transform the data to a rate of change in order to make our samples i.i.d. and therefore valid with a t-test.
 
@@ -75,21 +75,27 @@ Rock as a genre has a rich history that includes a formative period in the late 
 The "genre_features_test('rock', 1967, 1982)" function will calculate the p-values for each of the track features for a given timeframe. Below is the output 'rock' from 1967 to 1982:
 
 "Is the mean of the annual rate of change different from 0?
+
 danceability:  
 p-value = 0.71
+
 energy:  
 p-value = 0.006
+
 speechiness:  
 p-value = 0.81
+
 acousticness:  
 p-value = 0.031
+
 instrumentalness:  
 p-value = 0.958
+
 liveness:  
 p-value = 0.629
+
 valence:  
 p-value = 0.723"
 
-We can see that in this case, there are two significant categories -- the energy and acousticness are changing substantially on a year-by-year basis for the given period.
 
-However, when we run these same calculations over the whole time period, we see no significant values:
+We can see that in this case, there are two significant categories -- the energy and acousticness are changing substantially on a year-by-year basis for the given period.
